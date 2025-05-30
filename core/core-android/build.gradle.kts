@@ -30,11 +30,17 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
     implementation(project(":core:common-kotlin"))
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    implementation(libs.converter.gson)
+    debugImplementation(libs.okhttp.logging)
 
 }
