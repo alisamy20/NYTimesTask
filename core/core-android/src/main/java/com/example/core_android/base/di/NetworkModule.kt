@@ -1,7 +1,7 @@
 package com.example.core_android.base.di
 
 import com.example.common_kotlin.base.network.NetworkStatusChecker
-import com.example.core_android.base.network.NetworkChecker
+import com.example.core_android.base.util.network.NetworkChecker
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

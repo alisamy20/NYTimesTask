@@ -1,4 +1,4 @@
-package com.example.core_android.base.network
+package com.example.core_android.base.util.network
 
 import android.content.Context
 import android.net.ConnectivityManager
