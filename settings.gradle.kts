@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "NYTimesTask"
 include(":app")
-include(":common-kotlin")
+include(":core")
+include(":core:common-kotlin")
