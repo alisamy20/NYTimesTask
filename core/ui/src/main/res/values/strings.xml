@@ -1,0 +1,11 @@
+<resources>
+    <string name="home">Home</string>
+    <string name="book_mark">Bookmark</string>
+    <string name="details">Details</string>
+    <string name="article_details">Article Details</string>
+    <string name="back">back</string>
+    <string name="error_title">Error</string>
+    <string name="error_message">An unexpected error occurred. Please try again later.</string>
+    <string name="ok_button">OK</string>
+    <string name="search">Search</string>
+</resources>
