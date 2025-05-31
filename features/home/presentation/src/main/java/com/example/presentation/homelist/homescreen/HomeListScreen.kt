@@ -1,4 +1,4 @@
-package com.example.presentation.homelist.postsscreen
+package com.example.presentation.homelist.homescreen
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
