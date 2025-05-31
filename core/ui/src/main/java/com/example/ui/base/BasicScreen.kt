@@ -26,13 +26,14 @@ import com.example.ui.R
 import kotlinx.coroutines.flow.collectLatest
 
 
-
 @Composable
 fun <State : ViewState, Event : ViewEvent> BasicScreen(
     viewModel: BaseMVIViewModel<State, Event, *>,
     toolbar: @Composable (() -> Unit)? = null,
     snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
     content: @Composable (state: State) -> Unit,
+    loadingContent: @Composable (() -> Unit)? = null,
+    errorContent: @Composable ((String, () -> Unit) -> Unit)? = null, // New slot
     onEvent: ((Event) -> Unit)? = null,
 ) {
     val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
@@ -69,14 +70,16 @@ fun <State : ViewState, Event : ViewEvent> BasicScreen(
                 content(state)
 
                 if (state.isLoading) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.align(Alignment.Center)
-                    )
+                    (loadingContent ?: {
+                        CircularProgressIndicator(Modifier.align(Alignment.Center))
+                    })()
                 }
 
                 if (showDialog && dialogMessage != null) {
-                    ErrorDialog(
-                        message = dialogMessage!!, onDismiss = {
+                    (errorContent ?: { message, onDismiss ->
+                        ErrorDialog(message = message, onDismiss = onDismiss)
+                    })(
+                        dialogMessage!!, {
                             showDialog = false
                             dialogMessage = null
                         })
