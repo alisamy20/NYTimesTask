@@ -14,7 +14,7 @@ data class ArticleDto(
     val id: String,
     val url: String,
     val title: String,
-    @SerializedName("byline") val description: String,
+    @SerializedName("abstract") val description: String,
     val type: String,
     @SerializedName("published_date") val publishedDate: String,
     @SerializedName("updated") val updatedDate: String,

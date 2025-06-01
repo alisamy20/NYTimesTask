@@ -6,6 +6,7 @@ object Constant {
     const val IS_DARK_MODE = "is_dark_mode"
     const val ARTICLE_DATABASE = "article_database"
     const val TIMEOUT = 60L
+    const val IMAGE_KEY="image"
 }
 
 
