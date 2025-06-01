@@ -44,6 +44,15 @@ android {
 dependencies {
 
     implementation(project(":core:ui"))
+    implementation(project(":features:home:presentation"))
+//    implementation(project(":features:home:domain"))
+    implementation(project(":features:home:data"))
+    implementation(project(":core:common-kotlin"))
+  implementation(project(":core:database"))
+
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.material3)
 

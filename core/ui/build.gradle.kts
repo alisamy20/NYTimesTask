@@ -37,6 +37,7 @@ android {
 dependencies {
 
     implementation(project(":core:core-android"))
+    implementation(project(":core:common-kotlin"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material3)
