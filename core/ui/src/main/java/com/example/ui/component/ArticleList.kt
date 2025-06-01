@@ -13,6 +13,7 @@ import com.example.ui.theme.padding_8
 fun ArticleList(
     articles: List<ArticleModel>,
     onArticleClick: (ArticleModel) -> Unit,
+    onBookmarkClick: (ArticleModel) -> Unit,
 ) {
     LazyColumn(
         contentPadding = PaddingValues(padding_16),
@@ -22,7 +23,8 @@ fun ArticleList(
             val article = articles[index]
             ArticleItem(
                 article = article,
-                onArticleClick=onArticleClick
+                onArticleClick=onArticleClick,
+                onBookmarkClick = onBookmarkClick
             )
         }
     }

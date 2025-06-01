@@ -42,8 +42,8 @@ import com.example.ui.theme.padding_24
 @Composable
 fun HomeListScreen(
     viewModel: HomeViewModel = hiltViewModel(),
-    onArticleClick: (ArticleModel) -> Unit = {}
-) {
+    onArticleClick: (ArticleModel) -> Unit = {},
+    ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val uiEvent by viewModel.uiEvent.collectAsState(initial = null)
     val currentOnArticleClick by rememberUpdatedState(onArticleClick)
@@ -71,10 +71,11 @@ fun HomeListScreen(
                 onArticleClick = currentOnArticleClick,
                 onQueryChanged = {
                     viewModel.handleAction(HomeAction.SearchQueryChanged(it))
-                }
-            )
-        }
-    )
+                },
+                onBookmarkClick = { article ->
+                    viewModel.handleAction(HomeAction.ToggleBookmark(article))
+                })
+        })
 }
 
 
@@ -102,6 +103,7 @@ private fun HomeContent(
     state: HomeState,
     onRefresh: () -> Unit,
     onArticleClick: (ArticleModel) -> Unit,
+    onBookmarkClick: (ArticleModel) -> Unit,
     onQueryChanged: (String) -> Unit
 ) {
     Column(
@@ -120,7 +122,6 @@ private fun HomeContent(
         Spacer(modifier = Modifier.height(padding_12))
 
         if (state.isLoading) {
-            // 👇 Show shimmer instead of content when loading
             Column(
                 verticalArrangement = Arrangement.spacedBy(padding_24),
                 modifier = Modifier.fillMaxWidth()
@@ -136,7 +137,8 @@ private fun HomeContent(
                 isRefreshing = state.isRefreshing,
                 onRefresh = onRefresh,
                 articles = state.filteredArticles,
-                onArticleClick = onArticleClick
+                onArticleClick = onArticleClick,
+                onBookmarkClick = onBookmarkClick
             )
         }
     }
@@ -166,12 +168,13 @@ private fun SwipeRefreshList(
     isRefreshing: Boolean,
     onRefresh: () -> Unit,
     articles: List<ArticleModel>,
-    onArticleClick: (ArticleModel) -> Unit
-) {
+    onArticleClick: (ArticleModel) -> Unit,
+    onBookmarkClick: (ArticleModel) -> Unit,
+    ) {
     MySwipeRefresh(
         isRefreshing = isRefreshing, onRefresh = onRefresh
     ) {
-        ArticleList(articles, onArticleClick)
+        ArticleList(articles, onArticleClick, onBookmarkClick)
     }
 }
 

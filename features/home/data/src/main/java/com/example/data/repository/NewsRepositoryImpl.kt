@@ -23,7 +23,7 @@ class NewsRepositoryImpl @Inject constructor(
                 article.copy(isBookmarked = getBookmarkedNewsIds().contains(article.id))
             }
             insertAllNews(articlesWithBookmarks)
-            articlesFromRemote
+            articlesWithBookmarks
         } catch (e: Exception) {
             val local = getAllNewsFromLocal()
             if (local.isNotEmpty()) local else throw e
