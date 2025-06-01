@@ -28,16 +28,16 @@ class HomeViewModel @Inject constructor(
 
     override fun handleAction(action: HomeAction) {
         when (action) {
-            is HomeAction.LoadArticles -> getRedditPosts()
-            is HomeAction.Refresh -> getRedditPosts(isRefresh = true)
+            is HomeAction.LoadArticles -> getNewArticle()
+            is HomeAction.Refresh -> getNewArticle(isRefresh = true)
             is HomeAction.ToggleBookmark -> toggleBookmark(action.article)
-            is HomeAction.NavigateToArticleDetails -> navigateToPostDetails(action.article)
-            is HomeAction.SearchQueryChanged -> TODO()
+            is HomeAction.NavigateToArticleDetails -> navigateToArticleDetails(action.article)
+            is HomeAction.SearchQueryChanged -> updateSearchQuery(action.query)
         }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    private fun getRedditPosts(isRefresh: Boolean = false) {
+    private fun getNewArticle(isRefresh: Boolean = false) {
         getNewsUseCase(Unit).onEach { resource ->
             when (resource) {
                 is Resource.Loading -> {
@@ -100,12 +100,23 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun navigateToPostDetails(article: ArticleModel) {
+    private fun navigateToArticleDetails(article: ArticleModel) {
         setEvent { HomeViewEvent.NavigateToArticleDetails(article) }
     }
 
     private fun updateSearchQuery(query: String) {
         setState { copy(searchQuery = query) }
+        filterArticles(query)
+    }
+
+    private fun filterArticles(query: String) {
+        setState {
+            copy(
+                filteredArticles = filterPostsUseCase(
+                    uiState.value.originalArticles, query
+                )
+            )
+        }
     }
 
 

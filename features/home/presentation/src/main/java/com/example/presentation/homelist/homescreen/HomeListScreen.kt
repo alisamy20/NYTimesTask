@@ -1,6 +1,7 @@
 package com.example.presentation.homelist.homescreen
 
 import androidx.compose.foundation.basicMarquee
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,10 +29,13 @@ import com.example.presentation.homelist.viewmodel.HomeState
 import com.example.presentation.homelist.viewmodel.HomeViewEvent
 import com.example.presentation.homelist.viewmodel.HomeViewModel
 import com.example.ui.R
+import com.example.ui.component.ArticleCardShimmerEffect
 import com.example.ui.component.ArticleList
 import com.example.ui.component.MySwipeRefresh
+import com.example.ui.component.SearchBar
 import com.example.ui.theme.largeTextSize
 import com.example.ui.theme.padding_12
+import com.example.ui.theme.padding_16
 import com.example.ui.theme.padding_24
 
 
@@ -59,15 +63,20 @@ fun HomeListScreen(
     BasicScreen(
         viewModel = viewModel,
         snackbarHostState = snackbarHostState,
+        loadingContent = null,
         content = { uiState ->
             HomeContent(
                 state = uiState,
                 onRefresh = { viewModel.handleAction(HomeAction.Refresh) },
-                onArticleClick = currentOnArticleClick
+                onArticleClick = currentOnArticleClick,
+                onQueryChanged = {
+                    viewModel.handleAction(HomeAction.SearchQueryChanged(it))
+                }
             )
         }
     )
 }
+
 
 private suspend fun handleUiEvents(
     uiEvent: HomeViewEvent?,
@@ -79,6 +88,7 @@ private suspend fun handleUiEvents(
         is HomeViewEvent.NavigateToArticleDetails -> {
             onArticleClick(uiEvent.article)
         }
+
         is HomeViewEvent.NoInternetConnection -> {
             snackbarHostState.showSnackbar(noInternetMessage)
         }
@@ -91,21 +101,47 @@ private suspend fun handleUiEvents(
 private fun HomeContent(
     state: HomeState,
     onRefresh: () -> Unit,
-    onArticleClick: (ArticleModel) -> Unit
+    onArticleClick: (ArticleModel) -> Unit,
+    onQueryChanged: (String) -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxSize().statusBarsPadding()
+        modifier = Modifier
+            .fillMaxSize()
+            .statusBarsPadding()
     ) {
-        TitlesMarquee(state.filteredArticles)
-        Spacer(modifier = Modifier.height(padding_12))
-        SwipeRefreshList(
-            isRefreshing = state.isRefreshing,
-            onRefresh = onRefresh,
-            articles = state.filteredArticles,
-            onArticleClick = onArticleClick
+        SearchBar(
+            query = state.searchQuery, onQueryChanged = onQueryChanged
         )
+
+        Spacer(modifier = Modifier.height(padding_12))
+
+        TitlesMarquee(state.filteredArticles)
+
+        Spacer(modifier = Modifier.height(padding_12))
+
+        if (state.isLoading) {
+            // 👇 Show shimmer instead of content when loading
+            Column(
+                verticalArrangement = Arrangement.spacedBy(padding_24),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                repeat(10) {
+                    ArticleCardShimmerEffect(
+                        modifier = Modifier.padding(horizontal = padding_16)
+                    )
+                }
+            }
+        } else {
+            SwipeRefreshList(
+                isRefreshing = state.isRefreshing,
+                onRefresh = onRefresh,
+                articles = state.filteredArticles,
+                onArticleClick = onArticleClick
+            )
+        }
     }
 }
+
 
 @Composable
 private fun TitlesMarquee(articles: List<ArticleModel>) {
@@ -133,8 +169,7 @@ private fun SwipeRefreshList(
     onArticleClick: (ArticleModel) -> Unit
 ) {
     MySwipeRefresh(
-        isRefreshing = isRefreshing,
-        onRefresh = onRefresh
+        isRefreshing = isRefreshing, onRefresh = onRefresh
     ) {
         ArticleList(articles, onArticleClick)
     }

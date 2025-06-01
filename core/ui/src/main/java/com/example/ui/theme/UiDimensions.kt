@@ -12,11 +12,16 @@ val elevation: Dp = 8.dp
 // Image
 val imageWidth: Dp = 120.dp
 
+val IconSize = 20.dp
+
 // Paddings and Spacers
 val padding_16: Dp = 16.dp
 val padding_8: Dp = 8.dp
 val padding_12: Dp = 12.dp
 val padding_24: Dp = 24.dp
+
+val ArticleCardSize = 96.dp
+
 
 // Text Sizes
 val largeTextSize = 18.sp
