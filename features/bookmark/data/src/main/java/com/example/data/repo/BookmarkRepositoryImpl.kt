@@ -11,10 +11,6 @@ class BookmarkRepositoryImpl @Inject constructor(
     override suspend fun getBookmarkedArticles() = localDataSource.getBookmarkedArticles()
 
 
-    override suspend fun updateBookmarkStatus(articleId: String, isBookmarked: Boolean) =
-        localDataSource.updateBookmarkStatus(articleId, isBookmarked)
-
-
     override suspend fun clearAllBookmarks() = localDataSource.clearAllBookmarks()
 
 

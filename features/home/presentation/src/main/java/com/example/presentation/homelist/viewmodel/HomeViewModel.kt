@@ -7,13 +7,14 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import androidx.lifecycle.viewModelScope
 import com.example.common_kotlin.base.coroutine_dispatcher.IoDispatcher
+import com.example.common_kotlin.base.event.BookmarkUpdateBus
 import com.example.common_kotlin.domain.model.ArticleModel
 import com.example.domain.usecase.GetNewsUseCase
-import com.example.domain.usecase.UpdateBookmarkStatusUseCase
 import com.example.ui.base.BaseMVIViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import com.example.common_kotlin.base.network.Resource
+import com.example.common_kotlin.domain.usecase.UpdateBookmarkStatusUseCase
 import com.example.domain.usecase.FilterNewsUseCase
 
 
@@ -33,8 +34,20 @@ class HomeViewModel @Inject constructor(
             is HomeAction.ToggleBookmark -> toggleBookmark(action.article)
             is HomeAction.NavigateToArticleDetails -> navigateToArticleDetails(action.article)
             is HomeAction.SearchQueryChanged -> updateSearchQuery(action.query)
+            is HomeAction.ObserveBookmarkUpdates -> observeBookmarkUpdates()
+
         }
     }
+
+
+    private fun observeBookmarkUpdates() {
+        viewModelScope.launch {
+            BookmarkUpdateBus.events.collect {
+                handleAction(HomeAction.LoadArticles)
+            }
+        }
+    }
+
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun getNewArticle(isRefresh: Boolean = false) {
