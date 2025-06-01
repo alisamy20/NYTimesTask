@@ -10,11 +10,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
+abstract class BookmarkRepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun bindFavouriteRepository(
+    abstract fun bindBookmarkRepository(
         bookmarkRepositoryImpl: BookmarkRepositoryImpl,
     ): BookmarkRepository
 }

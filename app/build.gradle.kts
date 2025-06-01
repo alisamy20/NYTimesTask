@@ -24,8 +24,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -45,10 +44,11 @@ dependencies {
 
     implementation(project(":core:ui"))
     implementation(project(":features:home:presentation"))
-//    implementation(project(":features:home:domain"))
     implementation(project(":features:home:data"))
+    implementation(project(":features:bookmark:presentation"))
+    implementation(project(":features:bookmark:data"))
     implementation(project(":core:common-kotlin"))
-  implementation(project(":core:database"))
+    implementation(project(":core:database"))
 
 
     implementation(libs.hilt.android)

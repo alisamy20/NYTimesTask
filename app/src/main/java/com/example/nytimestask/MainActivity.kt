@@ -17,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.presentation.bookmarkscreen.BookmarkScreen
 import com.example.presentation.homelist.homescreen.HomeListScreen
 import com.example.ui.component.BottomBar
 import com.example.ui.navigation.AppRoute
@@ -65,7 +66,7 @@ fun AppGraph(navController: NavHostController, innerPadding: PaddingValues) {
         }
 
         composable(AppRoute.BookMark.route) {
-
+            BookmarkScreen()
         }
     }
 }
