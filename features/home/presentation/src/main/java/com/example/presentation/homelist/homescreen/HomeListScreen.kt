@@ -49,6 +49,8 @@ fun HomeListScreen(
     val currentOnArticleClick by rememberUpdatedState(onArticleClick)
 
     LaunchedEffect(Unit) {
+        viewModel.handleAction(HomeAction.ObserveBookmarkUpdates)
+
         if (viewModel.uiState.value.originalArticles.isEmpty()) {
             viewModel.handleAction(HomeAction.LoadArticles)
         }

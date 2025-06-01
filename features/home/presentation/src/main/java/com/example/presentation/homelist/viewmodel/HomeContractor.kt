@@ -12,6 +12,8 @@ sealed class HomeAction : ViewAction {
     data class ToggleBookmark(val article: ArticleModel) : HomeAction()
     data object Refresh : HomeAction()
     data class SearchQueryChanged(val query: String) : HomeAction()
+    data object ObserveBookmarkUpdates : HomeAction()
+
 
 }
 
