@@ -13,7 +13,7 @@ sealed class AppRoute(
     val icon: ImageVector? = null
 ) {
     data object Home : AppRoute("home", R.string.home, Icons.Filled.Home)
-    data object Favorites : AppRoute("book mark", R.string.book_mark, Icons.Filled.Favorite)
+    data object BookMark : AppRoute("book mark", R.string.book_mark, Icons.Filled.Favorite)
     data object Details : AppRoute("details", R.string.details)
 
 }
