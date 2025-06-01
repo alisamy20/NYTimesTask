@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
-
 }
 
 android {
-    namespace = "com.example.ui"
+    namespace = "com.example.home"
     compileSdk = 35
 
     defaultConfig {
@@ -35,17 +33,5 @@ android {
 }
 
 dependencies {
-
-    implementation(project(":core:core-android"))
-    implementation(project(":core:common-kotlin"))
-
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.coil.compose)
-    implementation(libs.google.accompanist.swiperefresh)
-    debugImplementation(libs.androidx.ui.tooling)
-
-    implementation(libs.androidx.material.icons.extended)
 
 }

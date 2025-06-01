@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.core_android"
+    namespace = "com.example.data"
     compileSdk = 35
 
     defaultConfig {
@@ -13,19 +13,18 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        buildConfigField("String", "ENDPOINT_VIEWED_ARTICLES", "\"viewed/{period}.json\"")
+        buildConfigField("String", "PATH_PERIOD", "\"period\"")
+        buildConfigField("String", "DEFAULT_PERIOD", "\"7\"")
 
-        buildConfigField("String", "QUERY_API_KEY", "\"api-key\"")
-        buildConfigField("String", "NYT_API_KEY", "\"QG7V7GJlPb4HVhSVoQodw3mlC2kGPtPZ\"")
-        buildConfigField(
-            "String", "NYT_BASE_URL", "\"https://api.nytimes.com/svc/mostpopular/v2/\""
-        )
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
     }
@@ -43,10 +42,11 @@ android {
 }
 
 dependencies {
+
     implementation(project(":core:common-kotlin"))
+    implementation(project(":features:home:domain"))
+
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.converter.gson)
-    debugImplementation(libs.okhttp.logging)
-
 }
