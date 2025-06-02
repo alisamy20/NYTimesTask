@@ -6,7 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.common_kotlin.base.constant.Constant.ARG_ARTICLE_JSON
+import com.example.common_kotlin.utils.Constant.ARG_ARTICLE_JSON
 import com.example.ui.R
 
 sealed class AppRoute(
