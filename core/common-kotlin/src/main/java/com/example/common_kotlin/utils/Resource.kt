@@ -1,4 +1,4 @@
-package com.example.common_kotlin.base.network
+package com.example.common_kotlin.utils
 
 sealed class Resource<out T> {
 

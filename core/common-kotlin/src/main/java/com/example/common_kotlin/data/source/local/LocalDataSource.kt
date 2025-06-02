@@ -4,7 +4,7 @@ import com.example.common_kotlin.domain.model.ArticleModel
 
 
 interface LocalDataSource {
-    suspend fun insertAllArticles(posts: List<ArticleModel>)
+    suspend fun insertAllArticles(articles: List<ArticleModel>)
     suspend fun getBookmarkedArticlesIds(): List<String>
     suspend fun updateBookmarkStatus(articleID: String, isBookmarked: Boolean)
     suspend fun getBookmarkedArticles(): List<ArticleModel>

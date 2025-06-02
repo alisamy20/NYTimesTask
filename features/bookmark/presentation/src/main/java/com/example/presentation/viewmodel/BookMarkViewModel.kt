@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class BookMarkViewModel @Inject constructor(
-    private val getBookmarkedPostsUseCase: GetBookmarkedArticlesUseCase,
+    private val getBookmarkedArticlesUseCase: GetBookmarkedArticlesUseCase,
     private val clearAllBookmarksUseCase: ClearAllBookmarksUseCase,
     private val updateBookmarkStatusUseCase: UpdateBookmarkStatusUseCase,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
@@ -42,8 +42,8 @@ class BookMarkViewModel @Inject constructor(
         viewModelScope.launch(ioDispatcher) {
             setState { copy(isLoading = true) }
             try {
-                val posts = getBookmarkedPostsUseCase()
-                setState { copy(bookmarkedArticles = posts, isLoading = false, error = null) }
+                val articles = getBookmarkedArticlesUseCase()
+                setState { copy(bookmarkedArticles = articles, isLoading = false, error = null) }
             } catch (e: Exception) {
                 setState { copy(isLoading = false, error = e.message) }
                 setEvent { BookmarkViewEvent.Error(e.message ?: "Unknown error") }
@@ -63,27 +63,27 @@ class BookMarkViewModel @Inject constructor(
         }
     }
 
-    private fun toggleBookmark(post: ArticleModel) {
-        val currentPosts = uiState.value.bookmarkedArticles
-        val index = currentPosts.indexOfFirst { it.id == post.id }
+    private fun toggleBookmark(article: ArticleModel) {
+        val currentArticles = uiState.value.bookmarkedArticles
+        val index = currentArticles.indexOfFirst { it.id == article.id }
 
         if (index != -1) {
-            val isNowBookmarked = !post.isBookmarked
+            val isNowBookmarked = !article.isBookmarked
 
-            val updatedPosts = if (isNowBookmarked) {
-                currentPosts.toMutableList().apply {
-                    this[index] = post.copy(isBookmarked = true)
+            val updatedArticles = if (isNowBookmarked) {
+                currentArticles.toMutableList().apply {
+                    this[index] = article.copy(isBookmarked = true)
                 }
             } else {
-                currentPosts.toMutableList().apply {
+                currentArticles.toMutableList().apply {
                     removeAt(index)
                 }
             }
 
-            setState { copy(bookmarkedArticles = updatedPosts) }
+            setState { copy(bookmarkedArticles = updatedArticles) }
 
             viewModelScope.launch(ioDispatcher) {
-                updateBookmarkStatusUseCase(post.id, isNowBookmarked)
+                updateBookmarkStatusUseCase(article.id, isNowBookmarked)
                  BookmarkUpdateBus.notifyUpdate()
             }
         }

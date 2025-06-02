@@ -37,6 +37,7 @@ android {
 dependencies {
 
     implementation(project(":core:common-kotlin"))
+    implementation(project(":core:core-android"))
     implementation(project(":core:ui"))
 
 

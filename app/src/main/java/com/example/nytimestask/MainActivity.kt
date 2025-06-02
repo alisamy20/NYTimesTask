@@ -19,7 +19,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.common_kotlin.base.constant.Constant.ARG_ARTICLE_JSON
+import com.example.common_kotlin.utils.Constant.ARG_ARTICLE_JSON
 import com.example.common_kotlin.utils.toArticleDataModel
 import com.example.common_kotlin.utils.toJson
 import com.example.details.ArticleDetailsScreen

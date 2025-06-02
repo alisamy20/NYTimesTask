@@ -1,4 +1,4 @@
-package com.example.core_android.base.util.network
+package com.example.core_android.util.network
 
 import com.example.core_android.BuildConfig
 import okhttp3.Interceptor

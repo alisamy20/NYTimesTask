@@ -1,4 +1,4 @@
-package com.example.core_android.base.data
+package com.example.core_android.data
 
 import com.example.common_kotlin.data.source.local.LocalDataSource
 import com.example.common_kotlin.data.source.repo.BaseRepository

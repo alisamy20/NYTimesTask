@@ -1,7 +1,7 @@
 package com.example.common_kotlin.base.usecase
 
-import com.example.common_kotlin.base.extentions.obtainOutcome
-import com.example.common_kotlin.base.network.Resource
+import com.example.common_kotlin.utils.Resource
+import com.example.common_kotlin.utils.obtainOutcome
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
