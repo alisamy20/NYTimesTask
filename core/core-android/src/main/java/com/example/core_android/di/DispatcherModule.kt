@@ -1,4 +1,4 @@
-package com.example.core_android.base.di
+package com.example.core_android.di
 
 import com.example.common_kotlin.base.coroutine_dispatcher.DefaultDispatcher
 import com.example.common_kotlin.base.coroutine_dispatcher.IoDispatcher

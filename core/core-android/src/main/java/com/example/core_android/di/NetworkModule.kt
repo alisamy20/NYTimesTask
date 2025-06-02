@@ -1,10 +1,10 @@
-package com.example.core_android.base.di
+package com.example.core_android.di
 
-import com.example.common_kotlin.base.constant.Constant.TIMEOUT
-import com.example.common_kotlin.base.network.NetworkStatusChecker
+import com.example.common_kotlin.utils.Constant.TIMEOUT
+import com.example.common_kotlin.utils.NetworkStatusChecker
 import com.example.core_android.BuildConfig
-import com.example.core_android.base.util.network.ApiKeyInterceptor
-import com.example.core_android.base.util.network.NetworkChecker
+import com.example.core_android.util.network.ApiKeyInterceptor
+import com.example.core_android.util.network.NetworkChecker
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

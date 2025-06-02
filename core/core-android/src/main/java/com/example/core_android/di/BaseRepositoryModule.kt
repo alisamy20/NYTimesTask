@@ -1,7 +1,7 @@
-package com.example.core_android.base.di
+package com.example.core_android.di
 
 import com.example.common_kotlin.data.source.repo.BaseRepository
-import com.example.core_android.base.data.BaseRepositoryImpl
+import com.example.core_android.data.BaseRepositoryImpl
 import dagger.Module
 import dagger.Binds
 import dagger.hilt.InstallIn

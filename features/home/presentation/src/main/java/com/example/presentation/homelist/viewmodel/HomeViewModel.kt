@@ -13,8 +13,8 @@ import com.example.domain.usecase.GetNewsUseCase
 import com.example.ui.base.BaseMVIViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
-import com.example.common_kotlin.base.network.Resource
 import com.example.common_kotlin.domain.usecase.UpdateBookmarkStatusUseCase
+import com.example.common_kotlin.utils.Resource
 import com.example.domain.usecase.FilterNewsUseCase
 
 
@@ -22,7 +22,7 @@ import com.example.domain.usecase.FilterNewsUseCase
 class HomeViewModel @Inject constructor(
     private val getNewsUseCase: GetNewsUseCase,
     private val updateBookmarkStatusUseCase: UpdateBookmarkStatusUseCase,
-    private val filterPostsUseCase: FilterNewsUseCase,
+    private val filterArticlesUseCase: FilterNewsUseCase,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
 ) : BaseMVIViewModel<HomeState, HomeViewEvent, HomeAction>(HomeState()) {
 
@@ -125,7 +125,7 @@ class HomeViewModel @Inject constructor(
     private fun filterArticles(query: String) {
         setState {
             copy(
-                filteredArticles = filterPostsUseCase(
+                filteredArticles = filterArticlesUseCase(
                     uiState.value.originalArticles, query
                 )
             )

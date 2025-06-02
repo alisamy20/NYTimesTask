@@ -2,7 +2,7 @@ package com.example.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.common_kotlin.base.constant.Constant.ARTICLE_DATABASE
+import com.example.common_kotlin.utils.Constant.ARTICLE_DATABASE
 import com.example.database.room.appdatabase.AppDataBase
 import com.example.database.room.dao.ArticleDao
 import dagger.Module

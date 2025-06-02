@@ -1,6 +1,5 @@
-package com.example.common_kotlin.base.extentions
+package com.example.common_kotlin.utils
 
-import com.example.common_kotlin.base.network.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map

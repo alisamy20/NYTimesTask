@@ -5,7 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
-import com.example.common_kotlin.base.constant.Constant.IS_DARK_MODE
+import com.example.common_kotlin.utils.Constant.IS_DARK_MODE
 import com.example.common_kotlin.data.source.local.PreferencesManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

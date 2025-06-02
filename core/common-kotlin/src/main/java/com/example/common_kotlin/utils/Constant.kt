@@ -1,4 +1,4 @@
-package com.example.common_kotlin.base.constant
+package com.example.common_kotlin.utils
 
 
 object Constant {

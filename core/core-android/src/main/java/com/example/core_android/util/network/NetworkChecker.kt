@@ -1,9 +1,9 @@
-package com.example.core_android.base.util.network
+package com.example.core_android.util.network
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import com.example.common_kotlin.base.network.NetworkStatusChecker
+import com.example.common_kotlin.utils.NetworkStatusChecker
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 

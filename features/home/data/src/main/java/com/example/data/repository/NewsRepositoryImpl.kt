@@ -2,7 +2,7 @@ package com.example.data.repository
 
 
 import com.example.data.source.remote.NewsRemoteDataSource
-import com.example.common_kotlin.base.network.NetworkStatusChecker
+import com.example.common_kotlin.utils.NetworkStatusChecker
 import com.example.common_kotlin.data.source.local.LocalDataSource
 import com.example.common_kotlin.domain.model.ArticleModel
 import com.example.data.mapper.toDomain

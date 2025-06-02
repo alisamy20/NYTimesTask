@@ -1,6 +1,6 @@
 package com.example.common_kotlin.utils
 
-import com.example.common_kotlin.base.constant.Constant.IMAGE_KEY
+import com.example.common_kotlin.utils.Constant.IMAGE_KEY
 import com.example.common_kotlin.domain.model.ArticleModel
 
 
