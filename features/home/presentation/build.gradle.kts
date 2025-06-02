@@ -50,4 +50,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
 
 
+    testImplementation(libs.mockk)
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.jupiter.engine)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
+
+
+
 }
