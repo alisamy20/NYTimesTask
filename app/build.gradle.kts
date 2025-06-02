@@ -42,13 +42,17 @@ android {
 
 dependencies {
 
-    implementation(project(":core:ui"))
-    implementation(project(":features:home:presentation"))
-    implementation(project(":features:home:data"))
-    implementation(project(":features:bookmark:presentation"))
-    implementation(project(":features:bookmark:data"))
     implementation(project(":core:common-kotlin"))
     implementation(project(":core:database"))
+    implementation(project(":core:ui"))
+
+    implementation(project(":features:home:presentation"))
+    implementation(project(":features:home:data"))
+
+    implementation(project(":features:bookmark:presentation"))
+    implementation(project(":features:bookmark:data"))
+
+    implementation(project(":features:details"))
 
 
     implementation(libs.hilt.android)

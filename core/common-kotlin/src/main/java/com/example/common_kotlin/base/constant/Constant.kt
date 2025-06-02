@@ -7,6 +7,8 @@ object Constant {
     const val ARTICLE_DATABASE = "article_database"
     const val TIMEOUT = 60L
     const val IMAGE_KEY="image"
+    const val ARG_ARTICLE_JSON = "articleJson"
+
 }
 
 
