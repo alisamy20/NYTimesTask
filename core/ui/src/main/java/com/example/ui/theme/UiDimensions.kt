@@ -21,6 +21,8 @@ val padding_12: Dp = 12.dp
 val padding_24: Dp = 24.dp
 
 val ArticleCardSize = 96.dp
+val ArticleImageHeight = 248.dp
+
 
 
 // Text Sizes
